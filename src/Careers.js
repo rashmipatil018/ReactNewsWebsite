@@ -51,32 +51,6 @@ export default class Careers extends React.Component {
     this.setState(newState);
     this.updateValidators(inputPropName, event.target.value);
   }
-  //This function handles the logic when submiting the form.
-  handleSubmit(e) {
-    console.log(this.state.userInfo);
-    console.log("Yepee! form submitted");
-    e.preventDefault();
-  }
-
-  //  This function updates the state of the validator for the specified validator
-  updateValidators(fieldName, value) {
-    this.validators[fieldName].errors = [];
-    this.validators[fieldName].state = value;
-    this.validators[fieldName].valid = true;
-    this.validators[fieldName].rules.forEach(rule => {
-      if (rule.test instanceof RegExp) {
-        if (!rule.test.test(value)) {
-          this.validators[fieldName].errors.push(rule.message);
-          this.validators[fieldName].valid = false;
-        }
-      } else if (typeof rule.test === "function") {
-        if (!rule.test(value)) {
-          this.validators[fieldName].errors.push(rule.message);
-          this.validators[fieldName].valid = false;
-        }
-      }
-    });
-  }
 
   // This function resets all validators for this form to the default state
   resetValidators() {
@@ -102,6 +76,7 @@ export default class Careers extends React.Component {
     }
     return result;
   }
+  
   // This method checks to see if the validity of all validators are true
   isFormValid() {
     let status = true;
@@ -111,6 +86,32 @@ export default class Careers extends React.Component {
       }
     });
     return status;
+  }
+  //This function handles the logic when submiting the form.
+  handleSubmit(e) {
+    console.log(this.state.userInfo);
+    console.log("Yepee! form submitted");
+    e.preventDefault();
+  }
+
+  //  This function updates the state of the validator for the specified validator
+  updateValidators(fieldName, value) {
+    this.validators[fieldName].errors = [];
+    this.validators[fieldName].state = value;
+    this.validators[fieldName].valid = true;
+    this.validators[fieldName].rules.forEach(rule => {
+      if (rule.test instanceof RegExp) {
+        if (!rule.test.test(value)) {
+          this.validators[fieldName].errors.push(rule.message);
+          this.validators[fieldName].valid = false;
+        }
+      } else if (typeof rule.test === "function") {
+        if (!rule.test(value)) {
+          this.validators[fieldName].errors.push(rule.message);
+          this.validators[fieldName].valid = false;
+        }
+      }
+    });
   }
 
   handleCheckClick = () => {
@@ -170,11 +171,6 @@ export default class Careers extends React.Component {
     } else {
       this.refs.firstNameRef.innerHTML = "";
     }
-    // if(this.state.userInfo.lastName == "") {
-    //     this.refs.lastNameRef.innerHTML = "Name cannot be blank";
-    // } else {
-    //     this.refs.lastNameRef.innerHTML = "";
-    // }
     if (this.state.userInfo.emailId == "") {
       this.refs.emailIdRef.innerHTML = "Email cannot be blank";
     } else {
@@ -281,35 +277,6 @@ export default class Careers extends React.Component {
           </p>
           <form onSubmit={this.onSubmit.bind(this)}>
             <label id="titleId"></label>
-            {/* 
-                    <div onChange={this.setSalutation.bind(this)}>
-                        <input 
-                            type="radio" 
-                            name="title" 
-                            id="a1" 
-                            value="miss" 
-                            required="required"
-                        />Miss
-                        <input 
-                            type="radio" 
-                            name="title" 
-                            id="a2" 
-                            value="mr" 
-                            required="required"
-                        />Mr.
-                        
-                        <input 
-                            type="radio" 
-                            name="title" 
-                            id="a3" 
-                            value="mrs" 
-                            required="required"
-                        />Mrs.
-                        <span id="salutationError" ref="salutationRef"></span>                  
-                        <br/><br/>
-                      
-                    </div>  */}
-
             <br />
             <label htmlFor="firstName"></label>
             <input
@@ -328,20 +295,6 @@ export default class Careers extends React.Component {
             </span>
             <br />
             <br />
-            {/* <label htmlFor="lastName">Last Name*:</label>
-                 <input type="text"
-                        name="lastName" 
-                        id="lastName" 
-                        placeholder="Last Name"
-                        value={this.state.userInfo.lastName}
-                        onChange={e => this.handleInputChange(e, 'lastName')}
-                        />
-                        <br/>
-                        <span id="errorName" ref="lastNameRef"></span>
-                        <span id="errorName"> {this.displayValidationErrors('lastName')} </span>
-                        
-                    <br/><br/>
-                     */}
             <label htmlFor="emailId"></label>
             <input
               type="text"
@@ -397,35 +350,7 @@ export default class Careers extends React.Component {
             <br />
             <br />
             <label id="howId" htmlFor="zipcode"></label>
-            {/* <input 
-                    id="cId" 
-                    type='checkbox' 
-                    name="source" 
-                    value={this.state.how['facebook']}
-                    checked = {this.state.checkBoxChecked}
-                    onChange={this.onHowChange.bind(this)}
-                    /> Facebook
-                    
-                    <input 
-                    id="cId" 
-                    type='checkbox' 
-                    name="source" 
-                    value={this.state.how['google']}
-                    onChange={this.onHowChange.bind(this)}
-                    /> Google
-                    
-                    <input 
-                    id="cId" 
-                    type='checkbox' 
-                    name="source" 
-                    value={this.state.how['yelp']}
-                    onChange={this.onHowChange.bind(this)}
-                    /> Yelp
-                    <br/>
-                    <span id="checkedError" ref='test'></span>
-        
-                    <br/><br/> */}
-
+          
             <br />
             <label id="commentsId" htmlFor="comments"></label>
             <textarea
