@@ -1,1 +1,1 @@
-# 
+News website using MERN stack which enables users to read real-time news feed from around the world based on user’s interest. Designed the user interface with ReactJS, Bootstrap, HTML5, CSS3 and JavaScript.
